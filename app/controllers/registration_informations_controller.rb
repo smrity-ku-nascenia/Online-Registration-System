@@ -87,6 +87,25 @@ class RegistrationInformationsController < ApplicationController
     end
   end
 
+  def populate_completed_courses
+
+    @result = RegistrationInformation.where(:student_id => current_user.id, semester_id: params[:semester_id] ).order(:student_id)
+
+    unless @result.empty?
+      respond_to do |format|
+        format.js { render 'populate_results', :formats => [:js] }
+      end
+    else
+      render json: {success: 0, msg: 'You are not registered to this Semester!'}
+    end
+
+
+  end
+
+  def see_completed_course
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration_information

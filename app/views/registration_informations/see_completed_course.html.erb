@@ -1,0 +1,27 @@
+<br><fieldset>
+  <legend>Create Result</legend>
+  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.semester_id]}), prompt: 'Select semester' %>
+
+  <br><br>
+  <div id="student_table">
+
+  </div>
+
+  <script>
+      $('#semester_id').change(function () {
+          $('#student_table').show();
+          semester = $("#semester_id").val();
+
+          $.ajax({
+              url: "<%= populate_completed_courses_path()%>"+ '?semester_id='+semester,
+              success: function(data){
+                  if(data['success'] == 0) {
+                      alert(data['msg']);
+                      $('#student_table').hide();
+                  }
+              }
+          });
+      });
+  </script>
+
+</fieldset>

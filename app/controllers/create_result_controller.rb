@@ -53,16 +53,10 @@ class CreateResultController < ApplicationController
 
   end
 
+
   def populate_results
 
     @result = RegistrationInformation.where(:student_id => params[:student_id]).order(:course_id)
-
-    @result.each do |result|
-      mark = result.mark
-      result.grade = grade(mark)
-
-      result.save
-    end
 
     respond_to do |format|
       format.js { render 'populate_results', :formats => [:js] }

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get "/create_result/show_result" => "create_result#show_result"
   get "/send_email/" => "create_result#send_email"
   get "/see_my_result/" => "registration_informations#see_my_result"
+  get '/populate_completed_courses/' =>'registration_informations#populate_completed_courses'
+  get '/see_completed_course/' =>'registration_informations#see_completed_course'
 
 
   # Example of regular route:
