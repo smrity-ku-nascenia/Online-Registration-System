@@ -1,0 +1,47 @@
+<br><fieldset>
+  <legend>Send Result</legend>
+  <b>Student ID: </b><%= select_tag :student_id, options_for_select(@students.all.map{|s| ["[ #{s.user.user_id} ]  #{s.user.user_name}", s.student_id]}.uniq), prompt: 'Select student' %>
+  <button id="create_result">Show Result</button>
+  <br><br>
+
+  <div id="student_table">
+
+  </div>
+
+  <hr><button id="send_result" style="float: right">Send Result</button>
+
+  <script>
+      $(document).ready(function () {
+          $('#send_result').hide();
+      });
+
+      $('#create_result').click(function () {
+          student = $('#student_id').val();
+          $.ajax({
+              url: "<%= populate_results_path() %>"+ '?student_id='+student
+          });
+          $('#send_result').show();
+      });
+
+      $('#send_result').click(function () {
+          student = $('#student_id').val();
+
+          alert('Your request is processing.....');
+
+          $.ajax({
+              url: "<%= send_email_path() %>"+ '?student_id='+student,
+
+              success: function(data){
+                  if(data['sucess'] == 1) {
+                      alert(data['msg']);
+                  }
+                  else {
+                      alert(data['msg']);
+                  }
+                  window.location.reload();
+              }
+          });
+      });
+  </script>
+
+</fieldset>

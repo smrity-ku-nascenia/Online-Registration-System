@@ -1,0 +1,50 @@
+<%= form_for(registrations) do |f| %>
+    <% if registrations.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(registrations.errors.count, "error") %> prohibited this course_taken from being saved:</h2>
+
+          <ul>
+            <% registrations.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= f.hidden_field :student_id, :readonly => true, value: current_user.id %>
+    </div>
+
+    <div class="field">
+      <%= f.label :semester_id, "Semester Name" %>
+      <%= f.select :semester_id, options_for_select(Semester.all.map{|sem|[sem.semester_name, sem.id]})%>
+    </div>
+
+    <div class="field">
+      <%= f.label :course_id, "Select Course" %>
+      <%= f.select :course_id, options_for_select(@course_list.map{|course|[course.course.course_name, course.course_id]})%>
+    </div>
+
+    <div class="field">
+      <%= f.hidden_field :mark, :value => 0 %>
+    </div>
+
+    <hr>
+
+    <div class="actions">
+      <%= f.submit "Register Course" %>
+    </div>
+<% end %>
+
+<script>
+  $('#registration_information_semester_id').change(function () {
+
+      $.ajax({
+          url: '/showcourse',
+          data: (
+              'semester_id='+$('#registration_information_semester_id').val()
+          )
+      })
+  });
+</script>

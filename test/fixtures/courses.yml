@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: CSE2
+  course_name: MyString3
+  credit: 1.5
+
+two:
+  course_id: CSE1
+  course_name: MyString2
+  credit: 1.3

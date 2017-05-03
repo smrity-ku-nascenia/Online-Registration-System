@@ -1,0 +1,27 @@
+<p>
+  <strong>Student:</strong>
+  <%= @registration_information.student_id %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @registration_information.semester_id %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @registration_information.course_id %>
+</p>
+
+<p>
+  <strong>Mark:</strong>
+  <%= @registration_information.mark %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @registration_information.grade %>
+</p>
+
+<%= link_to 'Edit', edit_registration_information_path(@registration_information) %> |
+<%= link_to 'Back', registration_informations_path %>

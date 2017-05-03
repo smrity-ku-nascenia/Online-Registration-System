@@ -1,0 +1,21 @@
+<br><fieldset>
+  <legend>Create Result</legend>
+  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.semester_id]}), prompt: 'Select semester' %>
+  <b> Course: </b><%= select_tag :course_id, options_for_select(RegistrationInformation.all.map{|r| [r.course.course_name, r.course_id]}.uniq), prompt: 'Select course'%>
+
+  <br><br>
+  <table id="student_table">
+
+  </table>
+
+  <script>
+    $('#semester_id, #course_id').change(function () {
+        semester = $("#semester_id").val();
+        course = $("#course_id").val();
+        $.ajax({
+            url: "<%= populate_students_path()%>"+ '?semester_id='+semester+'&'+ 'course_id='+course
+        });
+    });
+  </script>
+
+</fieldset>

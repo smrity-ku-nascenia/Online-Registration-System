@@ -1,0 +1,55 @@
+<table>
+  <thead>
+  <tr>
+    <th>Student ID</th>
+    <th>Semester Name</th>
+    <th>Course Name</th>
+    <th>Marks</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% index = 1 %>
+    <% students.each do |student| %>
+          <% if student.user.nil? then next end  %>
+          <tr>
+            <td ><%= student.user.user_id %></td>
+            <td ><%= student.semester.semester_name %></td>
+            <td><%= student.course.course_name %></td>
+            <td>
+              <%= text_field_tag "mark_text[#{index}]", student.mark %>
+              <%= hidden_field_tag "registration_id[#{index}]", student.id %>
+              <% index += 1 %>
+            </td>
+            <td><button class="update_btn" >Update</button></td>
+          </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<script>
+  $('.update_btn').click(function () {
+      index = this.parentNode.parentNode.rowIndex;
+
+      $.ajax({
+          url: "<%= update_mark_path() %>",
+          method: 'post',
+          data: (
+              {
+                  mark:  $('#mark_text_'+index).val(),
+                  registration_id: $('#registration_id_'+index).val(),
+              }
+          ),
+          success: function(data){
+              if(data['sucess'] == 1) {
+                  alert(data['msg']);
+              }
+              else {
+                  alert(data['msg']);
+              }
+          }
+      });
+  });
+</script>

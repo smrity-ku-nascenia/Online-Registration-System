@@ -1,0 +1,40 @@
+<br><fieldset>
+  <legend>Personal Details</legend>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div>
+          <%= image_tag(current_user.picture, :class => 'list_image', width: 100,height: 100) %>
+        </div>
+      </div>
+
+      <div class="col-lg-10">
+        <% if user_signed_in? %>
+            <table>
+              <tr>
+                <td><b>ID: </b></td>
+                <td><%= current_user.user_id %></td>
+              </tr>
+              <tr>
+                <td><b>Name: </b></td>
+                <td><%= current_user.user_name %></td>
+              </tr>
+              <tr>
+                <td><b>Email: </b></td>
+                <td><%= current_user.email %></td>
+              </tr>
+              <tr>
+                <td><b>Mobile: </b></td>
+                <td><%= current_user.mobile %></td>
+              </tr>
+            </table>
+            <br><div>
+                <button><%=  link_to("Edit Information",edit_user_registration_path) %></button>
+            </div>
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</fieldset>

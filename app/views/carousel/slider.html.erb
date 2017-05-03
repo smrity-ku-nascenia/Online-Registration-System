@@ -1,0 +1,18 @@
+<!-- Inspired by http://codepen.io/transportedman/pen/NPWRGq -->
+<% if user_signed_in? %>
+    <%= render :file => "carousel/profile_page", :layout => false %>
+<% else %>
+
+<div class="carousel slide carousel-fade" data-ride="carousel">
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+    </div>
+    <div class="item">
+    </div>
+  </div>
+</div>
+<% end %>
+<!-- Remeber to put all the content you want on top of the slider below the slider code -->
+

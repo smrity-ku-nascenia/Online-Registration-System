@@ -1,0 +1,13 @@
+
+<p>
+  <strong>Semester ID:</strong>
+  <%= @semester.semester_id %>
+</p>
+
+<p>
+  <strong>Semester Name:</strong>
+  <%= @semester.semester_name %>
+</p>
+
+<%= link_to 'Edit', edit_semester_path(@semester) %> |
+<%= link_to 'Back', semesters_path %>

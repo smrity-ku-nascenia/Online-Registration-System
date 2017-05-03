@@ -1,0 +1,1 @@
+json.partial! "assign_course_to_semesters/assign_course_to_semester", assign_course_to_semester: @assign_course_to_semester

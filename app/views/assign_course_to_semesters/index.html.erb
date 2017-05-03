@@ -1,0 +1,36 @@
+<br><fieldset>
+  <legend>Assigned Courses in Semesters</legend>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Semester ID</th>
+        <th>Semester Name</th>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @assign_course_to_semesters.each do |listItem| %>
+        <tr>
+          <td> <%= listItem.semester_id %> </td>
+          <td> <%= listItem.semester.semester_name %> </td>
+          <td> <%= listItem.course_id %> </td>
+          <td> <%= listItem.course.course_name %> </td>
+          <td><%= link_to 'Show', listItem %></td>
+          <td><%= link_to 'Edit', edit_assign_course_to_semester_path(listItem) %></td>
+          <td><%= link_to 'Destroy', listItem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br><br><h4><%= link_to 'New Assign', new_assign_course_to_semester_path %></h4>
+</fieldset>
+
+
+

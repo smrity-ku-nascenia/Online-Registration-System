@@ -1,0 +1,38 @@
+<br><fieldset>
+
+<% if @result.empty? %>
+      <b style="color: red">You have not registered any course yet!</b>
+<% elsif  @result.first.grade.nil? %>
+       <b style="color: red">Results not published Yet!</b>
+<% else %>
+    <br>
+    <b>Student Id : </b> <%= @result.first.user.user_id %><br>
+    <b>Semster : </b> <%= @result.first.semester.semester_name %>
+    <hr>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Marks</th>
+        <th>Grade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% index = 1 %>
+      <% @result.each do |result| %>
+          <tr>
+            <td><%= result.course.course_name %></td>
+            <td><%= result.mark %></td>
+            <td><%= result.grade %></td>
+          </tr>
+      <% end %>
+      <tr style="background-color: #66afe9; color: white">
+        <td><b>CGPA</b></td>
+        <td></td>
+        <td><%= results.first.cgpa %></td>
+      </tr>
+      </tbody>
+    </table>
+  <% end %>
+</fieldset>

@@ -1,0 +1,29 @@
+<hr>
+<b>Student Id : </b> <%= results.first.user.user_id %><br>
+<b>Semster : </b> <%= results.first.semester.semester_name %>
+<hr>
+
+<table>
+  <thead>
+  <tr>
+    <th>Course Name</th>
+    <th>Marks</th>
+    <th>Grade</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% index = 1 %>
+  <% results.each do |result| %>
+      <tr>
+        <td><%= result.course.course_name %></td>
+        <td><%= result.mark %></td>
+        <td><%= result.grade %></td>
+      </tr>
+  <% end %>
+  <tr style="background-color: #66afe9; color: white">
+    <td><b>CGPA</b></td>
+    <td></td>
+    <td><%= results.first.cgpa %></td>
+  </tr>
+  </tbody>
+</table>
