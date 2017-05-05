@@ -1,6 +1,6 @@
 <br><fieldset>
 
-<% if @result.empty? %>
+<% if @result.empty? || @result.nil? %>
       <b style="color: red">You have not registered any course yet!</b>
 <% elsif  @result.first.grade.nil? %>
        <b style="color: red">Results not published Yet!</b>

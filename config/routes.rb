@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :registration_informations
   resources :global_settings
 
+  post '/global_setting' => 'global_settings#create'
+
   post "/create_result/assign_grade"
 
   devise_for :users
@@ -37,7 +39,6 @@ Rails.application.routes.draw do
   get "/see_my_result/" => "registration_informations#see_my_result"
   get '/populate_completed_courses/' =>'registration_informations#populate_completed_courses'
   get '/see_completed_course/' =>'registration_informations#see_completed_course'
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

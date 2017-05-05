@@ -1,1 +1,1 @@
-$("#registration_information_course_id").html("<%=  escape_javascript options_for_select(@course_list.map{|course|[course.course.course_name, course.course_id]}) %>");
+$("#registration_information_course_id").html("<%=  escape_javascript options_for_select(@course_list.map{|course|[course.course.try(:course_name), course.course_id]}) %>");

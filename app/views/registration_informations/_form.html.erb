@@ -18,12 +18,12 @@
 
     <div class="field">
       <%= f.label :semester_id, "Semester Name" %>
-      <%= f.select :semester_id, options_for_select(Semester.all.map{|sem|[sem.semester_name, sem.id]})%>
+      <%= f.select :semester_id, options_for_select(Semester.all.map{|sem|[sem.semester_name, sem.id]})  %>
     </div>
 
     <div class="field">
       <%= f.label :course_id, "Select Course" %>
-      <%= f.select :course_id, options_for_select(@course_list.map{|course|[course.course.course_name, course.course_id]})%>
+      <%= f.select :course_id, options_for_select(@course_list.map{|course|[course.course.try(:course_name), course.course_id]})   %>
     </div>
 
     <div class="field">

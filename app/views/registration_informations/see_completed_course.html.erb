@@ -1,5 +1,5 @@
 <br><fieldset>
-  <legend>Create Result</legend>
+  <legend>Result</legend>
   <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.semester_id]}), prompt: 'Select semester' %>
 
   <br><br>

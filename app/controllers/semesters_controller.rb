@@ -41,20 +41,6 @@ class SemestersController < ApplicationController
   # PATCH/PUT /semesters/1
   # PATCH/PUT /semesters/1.json
   def update
-
-    unless @global_settings.blank? then
-      Semester.update_all(:status => "False")
-
-      respond_to do |format|
-        if @global_settings.update(semester_params)
-          format.html { redirect_to global_setting_path, notice: 'Semester was successfully updated.' }
-          format.json { render :show, status: :ok, location: @semester }
-        else
-          format.html { render :edit }
-          format.json { render json: @semester.errors, status: :unprocessable_entity }
-        end
-      end
-    else
       respond_to do |format|
         if @semester.update(semester_params)
           format.html { redirect_to @semester, notice: 'Semester was successfully updated.' }
@@ -64,7 +50,6 @@ class SemestersController < ApplicationController
           format.json { render json: @semester.errors, status: :unprocessable_entity }
         end
       end
-    end
   end
 
   # DELETE /semesters/1

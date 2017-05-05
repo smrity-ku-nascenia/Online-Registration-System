@@ -17,15 +17,23 @@ class RegistrationInformationsController < ApplicationController
 
     student = current_user.id
 
-    @result = RegistrationInformation.where(:student_id => student)
+    @result = RegistrationInformation.where(:student_id => student, :semester_id => GlobalSetting.first.semester_id)
 
-    render partial: 'create_result/result', locals: { results: @result }
+    unless @result.empty?
+      render partial: 'result', locals: { results: @result }
+    end
   end
 
   # GET /registration_informations/new
   def new
     @registration_information = RegistrationInformation.new
-    @course_list =  AssignCourseToSemester.where(:semester_id => Semester.find(1))
+
+    begin
+      @course_list =  AssignCourseToSemester.where(:semester_id => Semester.find(1))
+    rescue
+      @course_list = AssignCourseToSemester.all
+    end
+
   end
 
   def showcourse
@@ -51,7 +59,7 @@ class RegistrationInformationsController < ApplicationController
 
       respond_to do |format|
         if @registration.save
-          format.html { redirect_to @registration, notice: "#{@registration.course.course_name} course has been successfully registered" }
+          format.html { redirect_to @registration, notice: "course has been successfully registered" }
           format.json { render :show, status: :created, location: @registration }
         else
           format.html { render :new }
@@ -59,7 +67,7 @@ class RegistrationInformationsController < ApplicationController
         end
       end
     else
-      redirect_to @registration, notice: "#{@registration.course.course_name} Course Already Exists"
+      redirect_to @registration, notice: "Course Already Exists"
     end
   end
 
@@ -68,10 +76,10 @@ class RegistrationInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @registration_information.update(registration_information_params)
-        format.html { redirect_to @registration_information, notice: "#{@registration.course.course_name} course information was successfully updated." }
+        format.html { redirect_to registration_information_url, notice: "course information was successfully updated." }
         format.json { render :show, status: :ok, location: @registration_information }
       else
-        format.html { redirect_to @registration_information, :notice => "Not updated" }
+        format.html { redirect_to :edit }
         format.json { render json: @registration_information.errors, status: :unprocessable_entity }
       end
     end
@@ -82,7 +90,7 @@ class RegistrationInformationsController < ApplicationController
   def destroy
     @registration_information.destroy
     respond_to do |format|
-      format.html { redirect_to registration_informations_url, notice: "#{@registration_information.course.course_name} course has been deleted." }
+      format.html { redirect_to registration_informations_url, notice: "Course has been deleted." }
       format.json { head :no_content }
     end
   end

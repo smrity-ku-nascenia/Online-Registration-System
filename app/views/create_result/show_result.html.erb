@@ -15,7 +15,13 @@
           $('#send_result').hide();
       });
 
+      $('#student_id').change(function () {
+          $('#student_table').hide();
+          $('#send_result').hide();
+      });
+
       $('#create_result').click(function () {
+          $('#student_table').show();
           student = $('#student_id').val();
           $.ajax({
               url: "<%= populate_results_path() %>"+ '?student_id='+student

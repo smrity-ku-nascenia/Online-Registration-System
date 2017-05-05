@@ -24,6 +24,7 @@ student:
   encrypted_password: <%= Devise::Encryptor.digest(User, '111111') %>
   created_at: <%= Time.now %>
   role: 'Student'
+
 # column: value
 #
 
