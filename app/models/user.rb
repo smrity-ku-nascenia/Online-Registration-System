@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
 
-  has_many :registration_informations
+  has_many :enrollments
 
   mount_uploader :picture, ImageUploader
 

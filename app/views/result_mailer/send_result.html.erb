@@ -1,7 +1,7 @@
 <div>
   <hr>
-  <b>Student Id : </b> <%= @result.first.user.user_id %><br>
-  <b>Semster : </b> <%= @result.first.semester.semester_name %>
+  <b>Student Id : </b> <%= @result.first.enrollment.user.user_id %><br>
+  <b>Semster : </b> <%= @result.first.enrollment.semester.semester_name %>
   <hr>
 
   <table>
@@ -24,7 +24,7 @@
     <tr style="background-color: #66afe9; color: white">
       <td><b>CGPA</b></td>
       <td></td>
-      <td><%= @result.first.cgpa %></td>
+      <td><%= @result.first.enrollment.cgpa %></td>
     </tr>
     </tbody>
   </table>

@@ -1,27 +1,37 @@
-<br><fieldset>
-  <legend>Result</legend>
-  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.semester_id]}), prompt: 'Select semester' %>
 
-  <br><br>
-  <div id="student_table">
+  <br><% @enrollment.each do |enrollment| %>
+    <div>
+      <fieldset>
+        <legend><b>Semster : </b> <%= enrollment.semester.semester_name %></legend>
 
-  </div>
-
-  <script>
-      $('#semester_id').change(function () {
-          $('#student_table').show();
-          semester = $("#semester_id").val();
-
-          $.ajax({
-              url: "<%= populate_completed_courses_path()%>"+ '?semester_id='+semester,
-              success: function(data){
-                  if(data['success'] == 0) {
-                      alert(data['msg']);
-                      $('#student_table').hide();
-                  }
-              }
-          });
-      });
-  </script>
-
-</fieldset>
+          <% if enrollment.status==("Passed") %>
+              <table>
+                <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Marks</th>
+                  <th>Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% index = 1 %>
+                <% enrollment.registration_informations.each do |result| %>
+                    <tr>
+                      <td><%= result.course.course_name %></td>
+                      <td><%= result.mark %></td>
+                      <td><%= result.grade %></td>
+                    </tr>
+                <% end %>
+                <tr style="background-color: #66afe9; color: white">
+                  <td><b>CGPA</b></td>
+                  <td></td>
+                  <td><%= enrollment.cgpa %></td>
+                </tr>
+                </tbody>
+              </table>
+          <% else %>
+              <p style="color: red">Result has not been published yet!</p>
+          <% end %>
+      </fieldset>
+    </div>
+  <% end %>

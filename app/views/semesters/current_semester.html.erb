@@ -1,0 +1,19 @@
+<br><fieldset style="background-color: whitesmoke">
+
+  <h4 style="color: #1c2324">
+  <% if @semester.first.nil? then %>
+        <p style="color: red">Current Semester has not been set Yet!!</p>
+  <% else %>
+      <b> Current Semester :</b> <%= @semester.first.semester_name %>
+  <% end %>
+  </h4>
+  <br>
+
+  <button id="change">Set Current Semester</button>
+</fieldset>
+
+<script>
+  $('#change').click(function () {
+      window.open("<%= change_current_semester_path() %>",'_self');
+  });
+</script>

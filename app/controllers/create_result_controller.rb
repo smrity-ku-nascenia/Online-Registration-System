@@ -9,25 +9,14 @@ class CreateResultController < ApplicationController
   end
 
   def show_result
-    @students = RegistrationInformation.order(:student_id)
-
-    cgpa = 0.0
-    total_credit = 0.0
-    @students.each do |student|
-      cgpa += student.gpa * student.course.credit
-      total_credit += student.course.credit
-    end
-    cgpa = cgpa/total_credit
-
-
-    @students.update_all(:cgpa => cgpa.round(2))
+    @enrollments = Enrollment.all.order(:user_id)
   end
 
   def update_mark
     reg = RegistrationInformation.find(params[:registration_id])
     grde = grade(params[:mark].to_i)
-    c_gpa = gpa(params[:mark].to_i)
-    if reg.update(:mark => params[:mark], :grade => grde, :gpa => c_gpa)
+    gpa = gpa(params[:mark].to_i)
+    if reg.update(:mark => params[:mark], :grade => grde, :gpa => gpa)
       render json: {success: 1, msg: 'successfully updated marks'}
     else
       render json: {success: 0, msg: reg.errors.full_messages.first}
@@ -35,7 +24,7 @@ class CreateResultController < ApplicationController
   end
 
   def populate_students
-    @students = RegistrationInformation.where(:course_id => params[:course_id]).where(semester_id: params[:semester_id] ).order(:student_id)
+    @registrations = RegistrationInformation.where(:course_id => params[:course_id]).order(:enrollment_id)
 
     respond_to do |format|
        format.js { render 'populate_students', :formats => [:js] }
@@ -43,7 +32,7 @@ class CreateResultController < ApplicationController
   end
 
   def send_email
-    @result = RegistrationInformation.where(:student_id => params[:student_id]).order(:course_id)
+    @result = RegistrationInformation.where(:enrollment_id => params[:enrollment_id]).order(:course_id)
 
     if ResultMailer.send_result(@result).deliver
       render json: {success: 1, msg: 'Email sent!'}
@@ -53,10 +42,29 @@ class CreateResultController < ApplicationController
 
   end
 
+  def show_semester_course
+    @course_list =  CourseSemester.where(:semester_id => params[:semester_id])
+
+    respond_to do |format|
+      format.js { render 'show_semester_course', :formats => [:js] }
+    end
+  end
+
 
   def populate_results
 
-    @result = RegistrationInformation.where(:student_id => params[:student_id]).order(:course_id)
+    @result = RegistrationInformation.where(:enrollment_id => params[:enrollment_id]).order(:course_id)
+
+    cgpa = 0.0
+    total_credit = 0.0
+    @result.each do |result|
+      cgpa += result.gpa * result.course.credit
+      total_credit += result.course.credit
+    end
+
+    cgpa = cgpa/total_credit
+
+    Enrollment.find(params[:enrollment_id]).update(:cgpa => cgpa.round(2), :status => "Passed")
 
     respond_to do |format|
       format.js { render 'populate_results', :formats => [:js] }

@@ -1,0 +1,32 @@
+<br><fieldset>
+  <legend>Show Courses</legend>
+
+  <b>Semester :</b>
+  <%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}) %>
+  <br><br>
+
+  <div id="semester_table">
+
+  </div>
+
+  <br>
+
+  <%= link_to 'Assign Course', new_course_semester_path %>
+</fieldset>
+
+<script>
+    $(document).ready(function () {
+        semester = $("#semester_id").val();
+
+        $.ajax({
+            url: "<%= populate_courses_path()%>"+ '?semester_id='+semester
+        });
+    });
+    $('#semester_id').change(function () {
+        semester = $("#semester_id").val();
+
+        $.ajax({
+            url: "<%= populate_courses_path()%>"+ '?semester_id='+semester
+        });
+    });
+</script>

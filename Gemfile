@@ -35,6 +35,8 @@ gem 'fog'
 gem "rspec-rails", :group => [:development, :test]
 
 gem 'simplecov', :require => false, :group => :test
+
+gem "pundit"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

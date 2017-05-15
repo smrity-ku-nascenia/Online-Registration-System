@@ -1,0 +1,26 @@
+<br><fieldset>
+  <legend>Registered Semesters</legend>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Semester</th>
+        <th>Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @enrollments.each do |enrollment| %>
+        <tr>
+          <td><%= enrollment.semester.semester_name %></td>
+          <td><%= enrollment.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'Register to new Semester', new_enrollment_path %>
+</fieldset>

@@ -1,26 +1,28 @@
 Rails.application.routes.draw do
 
-  get 'create_result/choose_student'
+  resources :course_semesters
+  resources :enrollments
+  resources :registration_informations
+  resources :semesters
+  resources :courses
+  devise_for :users
 
+  get 'create_result/choose_student'
   get 'create_result/assign_grade'
   get 'result_mailer/send_result'
 
-  resources :registration_informations
-  resources :global_settings
 
-  post '/global_setting' => 'global_settings#create'
+  get '/current_semester/' => 'semesters#current_semester'
+  get '/change_current_semester/' => 'semesters#change_current_semester'
+
+  post 'change_semester' => 'semesters#change_semester'
 
   post "/create_result/assign_grade"
-
-  devise_for :users
 
   get '/carousel/slider'
   get '/carousel/profile_page'
 
-  resources :assign_course_to_semesters
 
-  resources :semesters
-  resources :courses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,14 +33,17 @@ Rails.application.routes.draw do
   get '/students/background' => 'students#background'
   get '/populate_students/' => 'create_result#populate_students'
   get '/populate_results/' => 'create_result#populate_results'
-  get '/showcourse' => 'registration_informations#showcourse'
+  post '/showcourse' => 'registration_informations#showcourse'
+  get '/show_semester_course' => 'create_result#show_semester_course'
+  get '/semester_course' => 'registration_informations#semester_course'
   post '/update_mark' => 'create_result#update_mark'
-  get "/registration_informations/new" => "registration_informations#new"
   get "/create_result/show_result" => "create_result#show_result"
+  get '/populate_courses/'=> "course_semesters#populate_courses"
   get "/send_email/" => "create_result#send_email"
   get "/see_my_result/" => "registration_informations#see_my_result"
   get '/populate_completed_courses/' =>'registration_informations#populate_completed_courses'
   get '/see_completed_course/' =>'registration_informations#see_completed_course'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,19 +1,33 @@
 <br><fieldset>
-  <legend>Create Result</legend>
-  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.semester_id]}), prompt: 'Select semester' %>
-  <b> Course: </b><%= select_tag :course_id, options_for_select(RegistrationInformation.all.map{|r| [r.course.course_name, r.course_id]}.uniq), prompt: 'Select course'%>
+  <legend>Course marks</legend>
+  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}), prompt: 'Select semester' %>
+  <b> Course: </b><%= select_tag :course_id, options_for_select([]), prompt: 'Select course'%>
+  <button id="show_btn">Show</button>
 
   <br><br>
-  <table id="student_table">
+  <div id="student_table">
 
-  </table>
+  </div>
 
   <script>
-    $('#semester_id, #course_id').change(function () {
+    $('#semester_id').change(function () {
+        semester = $("#semester_id").val();
+        $.ajax({
+            url: "<%= show_semester_course_path()%>"+ '?semester_id='+semester
+        });
+        $('#student_table').hide();
+    });
+    $('#course_id').change(function () {
+        $('#student_table').hide();
+    });
+    $('#show_btn').click(function () {
+        $('#student_table').show();
+
         semester = $("#semester_id").val();
         course = $("#course_id").val();
+
         $.ajax({
-            url: "<%= populate_students_path()%>"+ '?semester_id='+semester+'&'+ 'course_id='+course
+            url: "<%= populate_students_path()%>"+ '?course_id='+course
         });
     });
   </script>

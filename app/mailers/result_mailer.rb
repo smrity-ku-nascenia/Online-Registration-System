@@ -9,6 +9,6 @@ class ResultMailer < ApplicationMailer
   def send_result(result)
     @result = result
 
-    mail to: result.first.user.email, subject: "Result of this semester"
+    mail to: result.first.enrollment.user.email, subject: "Result of this semester"
   end
 end

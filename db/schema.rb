@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426100953) do
+ActiveRecord::Schema.define(version: 20170515085914) do
 
-  create_table "assign_course_to_semesters", force: :cascade do |t|
+  create_table "course_semesters", force: :cascade do |t|
     t.integer  "semester_id"
     t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["course_id"], name: "index_course_semesters_on_course_id"
+    t.index ["semester_id"], name: "index_course_semesters_on_semester_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -27,29 +29,37 @@ ActiveRecord::Schema.define(version: 20170426100953) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "global_settings", force: :cascade do |t|
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "semester_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "status"
+    t.float    "cgpa"
+    t.float    "total_credit", default: 0.0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["semester_id"], name: "index_enrollments_on_semester_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "registration_informations", force: :cascade do |t|
-    t.integer  "student_id"
-    t.integer  "semester_id"
+    t.integer  "enrollment_id"
     t.integer  "course_id"
     t.float    "mark"
     t.string   "grade"
     t.float    "gpa"
-    t.float    "cgpa"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["course_id"], name: "index_registration_informations_on_course_id"
+    t.index ["enrollment_id"], name: "index_registration_informations_on_enrollment_id"
   end
 
   create_table "semesters", force: :cascade do |t|
     t.string   "semester_id"
     t.string   "semester_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "status"
+    t.float    "max_credit",    default: 0.0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,7 +67,8 @@ ActiveRecord::Schema.define(version: 20170426100953) do
     t.string   "user_name",              default: "",        null: false
     t.string   "picture",                default: "",        null: false
     t.string   "email",                  default: "",        null: false
-    t.string   "mobile",                 default: "",        null: false
+    t.integer  "mobile",                                     null: false
+    t.string   "role",                   default: "Student", null: false
     t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -69,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170426100953) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
-    t.string   "role",                   default: "Student"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

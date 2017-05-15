@@ -1,34 +1,37 @@
-<table>
-  <thead>
-  <tr>
-    <th>Student ID</th>
-    <th>Semester Name</th>
-    <th>Course Name</th>
-    <th>Marks</th>
-    <th></th>
-  </tr>
-  </thead>
+<% if registrations.blank? then %>
+    <p style="color: red"> No Records found !!! </p>
+<% else %>
+  <table>
+    <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Semester Name</th>
+      <th>Course Name</th>
+      <th>Marks</th>
+      <th></th>
+    </tr>
+    </thead>
 
-  <tbody>
-    <% index = 1 %>
-    <% students.each do |student| %>
-          <% if student.user.nil? then next end  %>
-          <tr>
-            <td ><%= student.user.user_id %></td>
-            <td ><%= student.semester.semester_name %></td>
-            <td><%= student.course.course_name %></td>
-            <td>
-              <%= text_field_tag "mark_text[#{index}]", student.mark %>
-              <%= hidden_field_tag "registration_id[#{index}]", student.id %>
-              <% index += 1 %>
-            </td>
-            <td><button class="update_btn" >Update</button></td>
-          </tr>
-    <% end %>
+    <tbody>
+      <% index = 1 %>
+      <% registrations.each do |registration| %>
+            <% if registration.enrollment.user.nil? then next end  %>
+            <tr>
+              <td ><%= registration.enrollment.user.user_id %></td>
+              <td ><%= registration.enrollment.semester.semester_name %></td>
+              <td><%= registration.course.course_name %></td>
+              <td>
+                <%= text_field_tag "mark_text[#{index}]", registration.mark %>
+                <%= hidden_field_tag "registration_id[#{index}]", registration.id %>
+                <% index += 1 %>
+              </td>
+              <td><button class="update_btn" >Update</button></td>
+            </tr>
+      <% end %>
 
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+<% end %>
 <script>
   $('.update_btn').click(function () {
       index = this.parentNode.parentNode.rowIndex;

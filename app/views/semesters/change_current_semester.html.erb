@@ -1,0 +1,31 @@
+<br><fieldset>
+  <legend>Change Current Semester</legend>
+
+  <b>Semester :</b>
+  <%= select_tag :semester_id, options_for_select(Semester.all.map{|s| ["#{s.semester_name} | #{s.status}", s.id]}), prompt: 'Select semester' %>
+
+
+  <button id="change_semester">Ok</button>
+</fieldset>
+
+<script>
+    $('#change_semester').click(function () {
+
+        $.ajax({
+            url: "<%= change_semester_path() %>",
+            method: 'post',
+            data: ({
+                semester: $('#semester_id').val(),
+            }),
+            success: function(data){
+                if(data['sucess'] == 1) {
+                    alert(data['msg']);
+                }
+                else {
+                    alert(data['msg']);
+                }
+                window.open("<%= current_semester_path() %>",'_self');
+            }
+        });
+    });
+</script>

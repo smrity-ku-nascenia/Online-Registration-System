@@ -1,6 +1,7 @@
 class SemestersController < ApplicationController
   before_action :set_semester, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin
+  skip_before_action :verify_authenticity_token
 
   # GET /semesters
   # GET /semesters.json
@@ -29,7 +30,7 @@ class SemestersController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to @semester, notice: 'Semester was successfully created.' }
+        format.html { redirect_to semesters_path , notice: 'Semester was successfully created.' }
         format.json { render :show, status: :created, location: @semester }
       else
         format.html { render :new }
@@ -37,6 +38,30 @@ class SemestersController < ApplicationController
       end
     end
   end
+
+  def current_semester
+    @semester = Semester.where(:status => "Current")
+  end
+  def change_current_semester
+
+  end
+
+  def change_semester
+
+    response.headers['X-CSRF-Token'] = form_authenticity_token
+
+    Semester.update_all(:status => '')
+
+    semester = Semester.find(params[:semester])
+
+    if semester.update(:status => "Current")
+      render json: {success: 1, msg: 'Current semester has been changed successfully'}
+    else
+      render json: {success: 0, msg: reg.errors.full_messages.first}
+    end
+  end
+
+
 
   # PATCH/PUT /semesters/1
   # PATCH/PUT /semesters/1.json
@@ -70,6 +95,6 @@ class SemestersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def semester_params
-      params.require(:semester).permit(:semester_id, :semester_name)
+      params.require(:semester).permit(:semester_id, :semester_name, :max_credit)
     end
 end

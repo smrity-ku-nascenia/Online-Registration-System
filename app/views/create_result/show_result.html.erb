@@ -1,7 +1,7 @@
 <br><fieldset>
   <legend>Send Result</legend>
-  <b>Student ID: </b><%= select_tag :student_id, options_for_select(@students.all.map{|s| ["[ #{s.user.user_id} ]  #{s.user.user_name}", s.student_id]}.uniq), prompt: 'Select student' %>
-  <button id="create_result">Show Result</button>
+  <b>Student ID: </b><%= select_tag :enrollment_id, options_for_select(@enrollments.all.map{|e| ["[ #{e.user.user_id} ]  #{e.user.user_name}", e.id]}.uniq), prompt: 'Select student' %>
+  <button id="create_result">Create Result</button>
   <br><br>
 
   <div id="student_table">
@@ -22,20 +22,20 @@
 
       $('#create_result').click(function () {
           $('#student_table').show();
-          student = $('#student_id').val();
+          enrollment_id = $('#enrollment_id').val();
           $.ajax({
-              url: "<%= populate_results_path() %>"+ '?student_id='+student
+              url: "<%= populate_results_path() %>"+ '?enrollment_id='+enrollment_id
           });
           $('#send_result').show();
       });
 
       $('#send_result').click(function () {
-          student = $('#student_id').val();
+          enrollment_id = $('#enrollment_id').val();
 
           alert('Your request is processing.....');
 
           $.ajax({
-              url: "<%= send_email_path() %>"+ '?student_id='+student,
+              url: "<%= send_email_path() %>"+ '?enrollment_id='+enrollment_id,
 
               success: function(data){
                   if(data['sucess'] == 1) {
