@@ -2,54 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5ce6da-ad54-4bb3-ba4d-e564242839e9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/image1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/image2.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/course_semesters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/course_semesters_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/create_result_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/create_result_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/enrollments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/enrollments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registration_informations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registration_informations_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/semesters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/semesters_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course.rb" afterPath="$PROJECT_DIR$/app/models/course.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course_semester.rb" afterPath="$PROJECT_DIR$/app/models/course_semester.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/registration_information.rb" afterPath="$PROJECT_DIR$/app/models/registration_information.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/carousel/profile_page.html.erb" afterPath="$PROJECT_DIR$/app/views/carousel/profile_page.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course_semesters/_course.html.erb" afterPath="$PROJECT_DIR$/app/views/course_semesters/_course.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course_semesters/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/course_semesters/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course_semesters/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/course_semesters/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course_semesters/index.html.erb" afterPath="$PROJECT_DIR$/app/views/course_semesters/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/course_semesters/new.html.erb" afterPath="$PROJECT_DIR$/app/views/course_semesters/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/courses/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/courses/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/courses/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/courses/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/courses/index.html.erb" afterPath="$PROJECT_DIR$/app/views/courses/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/courses/new.html.erb" afterPath="$PROJECT_DIR$/app/views/courses/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/create_result/_result.html.erb" afterPath="$PROJECT_DIR$/app/views/create_result/_result.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/create_result/_student.html.erb" afterPath="$PROJECT_DIR$/app/views/create_result/_student.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/create_result/choose_student.html.erb" afterPath="$PROJECT_DIR$/app/views/create_result/choose_student.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/create_result/show_result.html.erb" afterPath="$PROJECT_DIR$/app/views/create_result/show_result.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/enrollments/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/enrollments/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/enrollments/index.html.erb" afterPath="$PROJECT_DIR$/app/views/enrollments/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/enrollments/new.html.erb" afterPath="$PROJECT_DIR$/app/views/enrollments/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration_informations/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/registration_informations/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration_informations/index.html.erb" afterPath="$PROJECT_DIR$/app/views/registration_informations/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration_informations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/registration_informations/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration_informations/see_completed_course.html.erb" afterPath="$PROJECT_DIR$/app/views/registration_informations/see_completed_course.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/result_mailer/send_result.html.erb" afterPath="$PROJECT_DIR$/app/views/result_mailer/send_result.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/change_current_semester.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/change_current_semester.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/current_semester.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/current_semester.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/index.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/new.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/semesters/show.html.erb" afterPath="$PROJECT_DIR$/app/views/semesters/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20170426100953_create_registration_informations.rb" afterPath="$PROJECT_DIR$/db/migrate/20170426100953_create_registration_informations.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -82,21 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="semesters_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="semesters_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/semesters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+            <state relative-caret-position="115">
+              <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="57" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_course.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/course_semesters/_course.html.erb">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="41" />
+            <state relative-caret-position="240">
+              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -193,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20170424085755_create_courses.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20170515085914_create_course_semesters.rb" />
@@ -244,6 +196,7 @@
         <option value="$PROJECT_DIR$/app/controllers/enrollments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/semesters_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/registration_informations_controller.rb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -838,12 +791,12 @@
       <workItem from="1494822065255" duration="240000" />
       <workItem from="1494824679793" duration="22484000" />
       <workItem from="1494906654981" duration="23775000" />
-      <workItem from="1494992637491" duration="9006000" />
+      <workItem from="1494992637491" duration="9188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="390272000" />
+    <option name="totallyTimeSpent" value="390454000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -856,16 +809,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="34" width="1366" height="738" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2780303" sideWeight="0.4888179" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34539473" sideWeight="0.4969697" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43171114" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4579901" sideWeight="0.5113636" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59811616" sideWeight="0.4969697" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40197694" sideWeight="0.4939394" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4579901" sideWeight="0.49166667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40197694" sideWeight="0.4939394" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4579901" sideWeight="0.48863637" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23333333" sideWeight="0.5111821" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.49242425" order="9" side_tool="false" content_ui="tabs" />
@@ -890,14 +844,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/sessions/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="50" lean-forward="false" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/registration_informations/populate_results.js.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1318,8 +1264,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/semesters_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+        <state relative-caret-position="115">
+          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="57" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
           <folding />
         </state>
       </provider>
