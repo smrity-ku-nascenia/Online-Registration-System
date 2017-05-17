@@ -36,7 +36,7 @@ class RegistrationInformationsController < ApplicationController
     if credit <= max_credit then
       respond_to do |format|
         if @registration.save
-          @registration.enrollment.update(:total_credit => credit)
+          @registration.enrollment.update(:total_credit => credit, :status => "Registered")
           format.html { redirect_to registration_informations_path, notice: "#{@registration.course_semester.course.course_name} course has been successfully registered" }
           format.json { render :show, status: :created, location: @registration }
         else

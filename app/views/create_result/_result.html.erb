@@ -4,30 +4,36 @@
     <b>Semster : </b> <%= results.first.enrollment.semester.semester_name %>
   </div>
 
-  <div style="padding: 10px">
-    <table class="table table-bordered table-hover">
-      <thead>
-      <tr>
-        <th>Course Name</th>
-        <th>Marks</th>
-        <th>Grade</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% index = 1 %>
-      <% results.each do |result| %>
-          <tr>
-            <td><%= result.course_semester.course.course_name %></td>
-            <td><%= result.mark %></td>
-            <td><%= result.grade %></td>
-          </tr>
-      <% end %>
-      <tr style="background-color: whitesmoke">
-        <td><b>CGPA</b></td>
-        <td></td>
-        <td><%= results.first.enrollment.cgpa %></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <% if results.first.enrollment.status == "Registered" %>
+      <div style="background-color: whitesmoke; padding: 10px">
+        <h5 style="color: red">All marks has not been assigned Yet!!</h5>
+      </div>
+  <% else %>
+    <div style="padding: 10px">
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Marks</th>
+          <th>Grade</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% index = 1 %>
+        <% results.each do |result| %>
+            <tr>
+              <td><%= result.course_semester.course.course_name %></td>
+              <td><%= result.mark %></td>
+              <td><%= result.grade %></td>
+            </tr>
+        <% end %>
+        <tr style="background-color: whitesmoke">
+          <td><b>CGPA</b></td>
+          <td></td>
+          <td><%= results.first.enrollment.cgpa %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>

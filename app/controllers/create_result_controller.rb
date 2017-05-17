@@ -64,7 +64,7 @@ class CreateResultController < ApplicationController
       cgpa = cgpa/total_credit
       Enrollment.find(params[:enrollment_id]).update(:cgpa => cgpa.round(2), :status => "Passed")
     rescue
-      Enrollment.find(params[:enrollment_id]).update(:cgpa => 0.0)
+      Enrollment.find(params[:enrollment_id]).update(:cgpa => 0.0, :status => "Registered")
     end
 
     respond_to do |format|
