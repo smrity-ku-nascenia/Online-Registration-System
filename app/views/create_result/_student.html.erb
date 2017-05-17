@@ -19,7 +19,7 @@
             <tr>
               <td ><%= registration.enrollment.user.user_id %></td>
               <td ><%= registration.enrollment.semester.semester_name %></td>
-              <td><%= registration.course.course_name %></td>
+              <td><%= registration.course_semester.course.course_name %></td>
               <td>
                 <%= text_field_tag "mark_text[#{index}]", registration.mark %>
                 <%= hidden_field_tag "registration_id[#{index}]", registration.id %>

@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20170515085914) do
 
   create_table "registration_informations", force: :cascade do |t|
     t.integer  "enrollment_id"
-    t.integer  "course_id"
+    t.integer  "course_semester_id"
     t.float    "mark"
     t.string   "grade"
     t.float    "gpa"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["course_id"], name: "index_registration_informations_on_course_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["course_semester_id"], name: "index_registration_informations_on_course_semester_id"
     t.index ["enrollment_id"], name: "index_registration_informations_on_enrollment_id"
   end
 

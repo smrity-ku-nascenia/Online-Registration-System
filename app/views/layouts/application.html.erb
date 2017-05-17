@@ -71,8 +71,9 @@
     <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-
-<%= yield %>
+<div class="container" style="padding: 5px">
+  <%= yield %>
+</div>
 
 <script>
     $('.carousel').carousel({

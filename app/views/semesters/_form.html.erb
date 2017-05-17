@@ -1,32 +1,34 @@
-<%= form_for(semester) do |f| %>
-  <% if semester.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(semester.errors.count, "error") %> prohibited this semester from being saved:</h2>
+<div class="panel-body">
+  <%= form_for(semester) do |f| %>
+    <% if semester.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(semester.errors.count, "error") %> prohibited this semester from being saved:</h2>
 
-      <ul>
-      <% semester.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :semester_id, "Semester ID" %>
-    <%= f.text_field :semester_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :semester_name, "Semester Name" %>
-    <%= f.text_field :semester_name %>
-  </div>
+        <ul>
+        <% semester.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div class="field">
-      <%= f.label :max_credit, "Maximum Credit" %>
-      <%= f.text_field :max_credit %>
+      <%= f.label :semester_id, "Semester ID" %>
+      <%= f.text_field :semester_id %>
     </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :semester_name, "Semester Name" %>
+      <%= f.text_field :semester_name %>
+    </div>
+
+      <div class="field">
+        <%= f.label :max_credit, "Maximum Credit" %>
+        <%= f.text_field :max_credit %>
+      </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

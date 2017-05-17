@@ -1,18 +1,15 @@
-<br><fieldset>
-  <legend>Show Courses</legend>
-
-  <b>Semester :</b>
-  <%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}) %>
-  <br><br>
-
-  <div id="semester_table">
-
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    Select Semester : <%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}) %>
   </div>
 
-  <br>
+  <div id="semester_table" style="padding-top: 20px;padding-bottom: 20px">
+  </div>
 
-  <%= link_to 'Assign Course', new_course_semester_path %>
-</fieldset>
+  <div>
+    <%= link_to 'Assign Course', new_course_semester_path %>
+  </div>
+</div>
 
 <script>
     $(document).ready(function () {

@@ -42,26 +42,21 @@ class SemestersController < ApplicationController
   def current_semester
     @semester = Semester.where(:status => "Current")
   end
-  def change_current_semester
 
+  def change_current_semester
   end
 
   def change_semester
-
     response.headers['X-CSRF-Token'] = form_authenticity_token
-
-    Semester.update_all(:status => '')
+    Semester.where(:status => "Current").update(:status => '')
 
     semester = Semester.find(params[:semester])
-
     if semester.update(:status => "Current")
       render json: {success: 1, msg: 'Current semester has been changed successfully'}
     else
       render json: {success: 0, msg: reg.errors.full_messages.first}
     end
   end
-
-
 
   # PATCH/PUT /semesters/1
   # PATCH/PUT /semesters/1.json

@@ -1,33 +1,35 @@
-<br><fieldset>
-  <legend>Semesters</legend>
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h4>Semesters</h4>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Semester Id</th>
-        <th>Semester Name</th>
-        <th>Maximum Credit</th>
-        <th>Status</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @semesters.each do |semester| %>
+  <div style="padding-top: 20px;padding-bottom: 20px">
+    <table class="table table-bordered table-hover">
+      <thead>
         <tr>
-          <td><%= semester.semester_id %></td>
-          <td><%= semester.semester_name %></td>
-          <td><%= semester.max_credit %></td>
-          <td><%= semester.status %></td>
-          <td><%= link_to 'Show', semester %></td>
-          <td><%= link_to 'Edit', edit_semester_path(semester) %></td>
-          <td><%= link_to 'Destroy', semester, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Semester Id</th>
+          <th>Semester Name</th>
+          <th>Maximum Credit</th>
+          <th>Status</th>
+          <th colspan="2"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @semesters.each do |semester| %>
+          <tr>
+            <td><%= semester.semester_id %></td>
+            <td><%= semester.semester_name %></td>
+            <td><%= semester.max_credit %></td>
+            <td><%= semester.status %></td>
+            <td><%= link_to 'Edit', edit_semester_path(semester) %></td>
+            <td><%= link_to 'Destroy', semester, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-  <br>
-
-  <%= link_to 'New Semester', new_semester_path %>
-</fieldset>
+  <div>
+    <%= link_to 'New Semester', new_semester_path %>
+  </div>
+</div>

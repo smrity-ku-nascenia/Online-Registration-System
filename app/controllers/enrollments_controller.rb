@@ -36,7 +36,6 @@ class EnrollmentsController < ApplicationController
           format.json { render json: @enrollment.errors, status: :unprocessable_entity }
         end
       end
-
   end
 
   # PATCH/PUT /enrollments/1

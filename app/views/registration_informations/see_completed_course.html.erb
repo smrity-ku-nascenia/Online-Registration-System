@@ -1,11 +1,17 @@
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h4>Results Summary</h4>
+  </div>
 
-  <br><% @enrollment.each do |enrollment| %>
+  <% @enrollment.each do |enrollment| %>
     <div>
-      <fieldset>
-        <legend><b>Semster : </b> <%= enrollment.semester.semester_name %></legend>
-
+      <div class="panel panel-info" style="padding: 20px">
+        <div class="panel-heading">
+          <h5><b>Semster : </b> <%= enrollment.semester.semester_name %></h5>
+        </div>
+        <div style="padding-top: 10px">
           <% if enrollment.status==("Passed") %>
-              <table>
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Course Name</th>
@@ -17,7 +23,7 @@
                 <% index = 1 %>
                 <% enrollment.registration_informations.each do |result| %>
                     <tr>
-                      <td><%= result.course.course_name %></td>
+                      <td><%= result.course_semester.course.course_name %></td>
                       <td><%= result.mark %></td>
                       <td><%= result.grade %></td>
                     </tr>
@@ -32,6 +38,8 @@
           <% else %>
               <p style="color: red">Result has not been published yet!</p>
           <% end %>
-      </fieldset>
+        </div>
+      </div>
     </div>
   <% end %>
+</div>

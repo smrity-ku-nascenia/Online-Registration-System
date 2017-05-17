@@ -24,7 +24,7 @@ class CreateResultController < ApplicationController
   end
 
   def populate_students
-    @registrations = RegistrationInformation.where(:course_id => params[:course_id]).order(:enrollment_id)
+    @registrations = RegistrationInformation.where(:course_semester_id => params[:course_id]).order(:enrollment_id)
 
     respond_to do |format|
        format.js { render 'populate_students', :formats => [:js] }
@@ -52,19 +52,20 @@ class CreateResultController < ApplicationController
 
 
   def populate_results
+    @result = RegistrationInformation.where(:enrollment_id => params[:enrollment_id]).order(:course_semester_id)
 
-    @result = RegistrationInformation.where(:enrollment_id => params[:enrollment_id]).order(:course_id)
-
-    cgpa = 0.0
-    total_credit = 0.0
-    @result.each do |result|
-      cgpa += result.gpa * result.course.credit
-      total_credit += result.course.credit
+    begin
+      cgpa = 0.0
+      total_credit = 0.0
+      @result.each do |result|
+        cgpa += result.gpa * result.course_semester.course.credit
+        total_credit += result.course_semester.course.credit
+      end
+      cgpa = cgpa/total_credit
+      Enrollment.find(params[:enrollment_id]).update(:cgpa => cgpa.round(2), :status => "Passed")
+    rescue
+      Enrollment.find(params[:enrollment_id]).update(:cgpa => 0.0)
     end
-
-    cgpa = cgpa/total_credit
-
-    Enrollment.find(params[:enrollment_id]).update(:cgpa => cgpa.round(2), :status => "Passed")
 
     respond_to do |format|
       format.js { render 'populate_results', :formats => [:js] }

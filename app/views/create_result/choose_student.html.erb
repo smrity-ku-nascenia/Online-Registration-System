@@ -1,13 +1,16 @@
-<br><fieldset>
-  <legend>Course marks</legend>
-  <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}), prompt: 'Select semester' %>
-  <b> Course: </b><%= select_tag :course_id, options_for_select([]), prompt: 'Select course'%>
-  <button id="show_btn">Show</button>
-
-  <br><br>
-  <div id="student_table">
-
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h4>Course marks</h4>
   </div>
+  <div style="padding-top: 20px;padding-bottom: 20px">
+    <b>Semester: </b><%= select_tag :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}), prompt: 'Select semester' %>
+    <b> Course: </b><%= select_tag :course_id, options_for_select([]), prompt: 'Select course'%>
+    <button id="show_btn">Show</button>
+  </div>
+
+  <div id="student_table" style="padding-bottom: 20px">
+  </div>
+</div>
 
   <script>
     $('#semester_id').change(function () {
@@ -31,5 +34,3 @@
         });
     });
   </script>
-
-</fieldset>

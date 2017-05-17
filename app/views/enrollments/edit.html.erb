@@ -1,8 +1,10 @@
-<br><fieldset>
-<legend>Editing Enrollment</legend>
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h3>Editing Enrollment</h3>
+  </div>
 
-<%= render 'edit_form', enrollment: @enrollment %>
+  <%= render 'edit_form', enrollment: @enrollment %>
 
-<%= link_to 'Show', @enrollment %> |
-<%= link_to 'Back', enrollments_path %>
-</fieldset>
+  <%= link_to 'Show', @enrollment %> |
+  <%= link_to 'Back', enrollments_path %>
+</div>

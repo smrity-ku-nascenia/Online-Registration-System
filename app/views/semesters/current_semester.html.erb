@@ -1,16 +1,18 @@
-<br><fieldset style="background-color: whitesmoke">
+<div class="panel panel-default" style="padding: 20px; background-color: whitesmoke">
+  <div class="panel-heading">
+    <h4 style="color: #1c2324">
+      <% if @semester.first.nil? then %>
+            <p style="color: red">Current Semester has not been set Yet!!</p>
+      <% else %>
+          <b> Current Semester :</b> <%= @semester.first.semester_name %>
+      <% end %>
+    </h4>
+  </div>
 
-  <h4 style="color: #1c2324">
-  <% if @semester.first.nil? then %>
-        <p style="color: red">Current Semester has not been set Yet!!</p>
-  <% else %>
-      <b> Current Semester :</b> <%= @semester.first.semester_name %>
-  <% end %>
-  </h4>
-  <br>
-
-  <button id="change">Set Current Semester</button>
-</fieldset>
+  <div style="padding-top: 20px;padding-bottom: 20px">
+    <button id="change">Set Current Semester</button>
+  </div>
+</div>
 
 <script>
   $('#change').click(function () {

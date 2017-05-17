@@ -1,27 +1,29 @@
-<%= form_for(course_semester) do |f| %>
-  <% if course_semester.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course_semester.errors.count, "error") %> prohibited this course_semester from being saved:</h2>
+<div class="panel-body">
+  <%= form_for(course_semester) do |f| %>
+    <% if course_semester.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(course_semester.errors.count, "error") %> prohibited this course_semester from being saved:</h2>
 
-      <ul>
-      <% course_semester.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% course_semester.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :semester_id %>
+      <%= f.select :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}), prompt: 'Select semester' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :course_id %>
+      <%= f.select :course_id, options_for_select(Course.all.map{|s| ["#{s.course_id} | #{s.course_name}", s.id]}), prompt: 'Select course' %>
+    </div><hr>
+
+    <div class="actions">
+      <%= f.submit "Assign" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :semester_id %>
-    <%= f.select :semester_id, options_for_select(Semester.all.map{|s| [s.semester_name, s.id]}), prompt: 'Select semester' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :course_id %>
-    <%= f.select :course_id, options_for_select(Course.all.map{|s| ["#{s.course_id} | #{s.course_name}", s.id]}), prompt: 'Select course' %>
-  </div><hr>
-
-  <div class="actions">
-    <%= f.submit "Assign" %>
-  </div>
-<% end %>
+</div>

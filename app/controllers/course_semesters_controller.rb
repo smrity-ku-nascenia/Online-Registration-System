@@ -25,7 +25,6 @@ class CourseSemestersController < ApplicationController
   # POST /course_semesters.json
   def create
     @course_semester = CourseSemester.new(course_semester_params)
-
     check = CourseSemester.where(:semester_id => course_semester_params[:semester_id], :course_id => course_semester_params[:course_id])
 
     if check.blank? then
@@ -41,7 +40,6 @@ class CourseSemestersController < ApplicationController
     else
       redirect_to course_semesters_path, notice: 'Course already exists.'
     end
-
   end
 
   # PATCH/PUT /course_semesters/1

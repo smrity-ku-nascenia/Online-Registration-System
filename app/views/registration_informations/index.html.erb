@@ -1,53 +1,65 @@
-<br>
-<% if @enrollment.blank? %>
-    <p style="color: red">You are not Registered To the Current Semester</p>
+<div class="panel panel-default" style="padding: 20px">
 
-    <%= form_for Enrollment.new do |f| %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :semester_id, value: current_semester.id %>
-        <%= f.hidden_field :status, value: "Registered" %>
+  <% if @enrollment.blank? %>
+      <div class="panel-heading">
+        <p style="color: red">You are not Registered To the Current Semester</p>
+      </div>
 
-        <div class="actions">
-          <%= f.submit "Register Now!!!" %>
+      <%= form_for Enrollment.new do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :semester_id, value: current_semester.id %>
+          <%= f.hidden_field :status, value: "Registered" %>
+
+          <div class="actions">
+            <%= f.submit "Register Now!!!" %>
+          </div>
+      <% end %>
+  <% else %>
+      <div class="row">
+        <div class="col-lg-6">
+          <div style="padding: 15px;background-color: whitesmoke;border: medium">
+            <h5>Registered Courses</h5>
+          </div>
+          <div style="padding: 20px">
+            <% @enrollment.registration_informations.each do |information| %>
+              <div class="row" style="padding-bottom: 10px">
+                <div class="col-lg-4">
+                  <%= information.course_semester.course.course_name %>
+                </div>
+                <div class="col-lg-6">
+                  <%= button_to 'Remove', information, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-    <% end %>
-<% else %>
-  <fieldset>
-    <legend>Course Takens</legend>
-
-    <b>Current Semester: </b><%= current_semester.semester_name  %>
-    <br><br>
-
-    <% if @enrollment.registration_informations.blank? then %>
-        <p style="color: red">No Course has been registered yet !</p>
-    <% else %>
-        <table>
-          <thead>
-          <tr>
-            <th>Course ID</th>
-            <th>Course Name</th>
-            <th>Credit</th>
-          </tr>
-          </thead>
-
-          <tbody>
-
-          <% @enrollment.registration_informations.each do |course| %>
-              <tr>
-                <td><%= course.course.course_id %></td>
-                <td><%= course.course.course_name %></td>
-                <td><%= course.course.credit %></td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-
-    <% end %><hr>
-    <button id="register_btn">Register Course</button>
-
-  </fieldset>
-<% end %>
-
+        <div class="col-lg-6">
+          <div style="padding: 15px;background-color: whitesmoke;border: medium">
+            <h5>Available Courses</h5>
+          </div>
+          <div style="padding: 20px">
+            <% @courses.each do |course| %>
+              <%= form_for(RegistrationInformation.new) do |f| %>
+                <% unless f.object.checked(@enrollment.id, course.id) %>
+                  <div class="row" style="padding-bottom: 10px">
+                    <div class="col-lg-4">
+                      <%= course.course.course_name %>
+                    </div>
+                    <div class="col-lg-6">
+                      <%= f.hidden_field :enrollment_id, value: @enrollment.id %>
+                      <%= f.hidden_field :course_semester_id, value: course.id %>
+                      <%= f.hidden_field :mark, value: 0.0 %>
+                      <%= f.submit "Add" %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
 <script>
     $('#register_btn').click(function () {
         enrollment_id = $("#enrollment_id").val();

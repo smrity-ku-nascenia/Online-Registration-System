@@ -1,7 +1,9 @@
-<br><fieldset>
-<legend>New Course</legend>
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h3>New Course</h3>
+  </div>
 
-<%= render 'form', course: @course %>
+  <%= render 'form', course: @course %>
 
-<%= link_to 'Back', courses_path %>
-</fieldset>
+  <%= link_to 'Back', courses_path %>
+</div>

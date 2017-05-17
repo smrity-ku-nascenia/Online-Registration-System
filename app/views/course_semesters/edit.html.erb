@@ -1,6 +1,9 @@
-<h1>Editing Course Semester</h1>
+<div class="panel panel-default" style="padding: 20px">
+  <div class="panel-heading">
+    <h4>Editing Courses in semesters </h4>
+  </div>
+  <%= render 'form', course_semester: @course_semester %>
 
-<%= render 'form', course_semester: @course_semester %>
-
-<%= link_to 'Show', @course_semester %> |
-<%= link_to 'Back', course_semesters_path %>
+  <%= link_to 'Show', @course_semester %> |
+  <%= link_to 'Back', course_semesters_path %>
+</div>

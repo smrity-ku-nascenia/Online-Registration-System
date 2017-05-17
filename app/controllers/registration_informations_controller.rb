@@ -6,6 +6,7 @@ class RegistrationInformationsController < ApplicationController
   # GET /registration_informations.json
   def index
     @enrollment = Enrollment.where(:user_id => current_user.id, :semester_id => current_semester.id).first
+    @courses = CourseSemester.where(:semester_id => current_semester.id)
   end
 
   # GET /registration_informations/1
@@ -15,51 +16,30 @@ class RegistrationInformationsController < ApplicationController
 
   # GET /registration_informations/new
   def new
-    @registration_information = RegistrationInformation.new
-    @enrollment = Enrollment.where(:user_id => current_user.id, :semester_id => current_semester.id).first
-    @courses = CourseSemester.where(:semester_id => current_semester.semester_id)
+    #@registration_information = RegistrationInformation.new
+    #@enrollment = Enrollment.where(:user_id => current_user.id, :semester_id => current_semester.id).first
+    #@courses = CourseSemester.where(:semester_id => current_semester.semester_id)
     # authorize @registration_information
   end
 
-
   # GET /registration_informations/1/edit
   def edit
-    @registration_information = Enrollment.new
-    enrollment = Enrollment.find(params[:enrollment_id])
-    @courses = Course.where(:semester_id => enrollment.semester_id)
   end
 
   # POST /registration_informations
   # POST /registration_informations.json
-
   def create
-
-    RegistrationInformation.where(:enrollment_id => registration_information_params[:enrollment_id]).delete_all
-
-    registration_information_params[:course_id].each do |course_id|
-      reg = RegistrationInformation.new(:enrollment_id => registration_information_params[:enrollment_id], :course_id => course_id, :mark => 0.0, :grade => "", :gpa => 0.0 )
-
-      if !course_id.blank? then
-        reg.save
-      else
-        reg.enrollment.update(:total_credit => registration_information_params[:enrollment_attributes][:total_credit])
-      end
-    end
-
-    redirect_to '/registration_informations', notice: "Task completed!!"
-=begin
     @registration = RegistrationInformation.new(registration_information_params)
 
     respond_to do |format|
-        if @registration.save
-          format.html { redirect_to @registration, notice: "course has been successfully registered" }
-          format.json { render :show, status: :created, location: @registration }
-        else
-          format.html { render :new }
-          format.json { render json: @registration.errors, status: :unprocessable_entity }
-        end
+      if @registration.save
+        format.html { redirect_to registration_informations_path, notice: "course has been successfully registered" }
+        format.json { render :show, status: :created, location: @registration }
+      else
+        format.html { render :new }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
       end
-=end
+    end
   end
 
   # PATCH/PUT /registration_informations/1
@@ -86,8 +66,6 @@ class RegistrationInformationsController < ApplicationController
     end
   end
 
-
-
   def see_completed_course
     @enrollment = Enrollment.where(:user_id => current_user.id)
   end
@@ -96,11 +74,10 @@ class RegistrationInformationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_registration_information
       @registration_information = RegistrationInformation.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_information_params
-      params.require(:registration_information).permit(:enrollment_id, :mark, :grade, :gpa, :course_id => [], enrollment_attributes: [:total_credit, :id])
+      params.require(:registration_information).permit(:enrollment_id, :course_semester_id, :mark, :grade, :gpa)
     end
 end
