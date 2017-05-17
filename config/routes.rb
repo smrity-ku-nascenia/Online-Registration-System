@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/populate_results/' => 'create_result#populate_results'
   post '/showcourse' => 'registration_informations#showcourse'
   get '/show_semester_course' => 'create_result#show_semester_course'
+  get '/show_course' => 'course_semesters#show_course'
   get '/semester_course' => 'registration_informations#semester_course'
   post '/update_mark' => 'create_result#update_mark'
   get "/create_result/show_result" => "create_result#show_result"

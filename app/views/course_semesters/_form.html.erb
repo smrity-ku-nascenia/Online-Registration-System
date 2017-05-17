@@ -19,7 +19,7 @@
 
     <div class="field">
       <%= f.label :course_id %>
-      <%= f.select :course_id, options_for_select(Course.all.map{|s| ["#{s.course_id} | #{s.course_name}", s.id]}), prompt: 'Select course' %>
+      <%= f.select :course_id, options_for_select([]), prompt: 'Select course' %>
     </div><hr>
 
     <div class="actions">
@@ -27,3 +27,4 @@
     </div>
   <% end %>
 </div>
+

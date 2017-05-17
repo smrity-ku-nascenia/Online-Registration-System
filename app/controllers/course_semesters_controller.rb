@@ -25,20 +25,15 @@ class CourseSemestersController < ApplicationController
   # POST /course_semesters.json
   def create
     @course_semester = CourseSemester.new(course_semester_params)
-    check = CourseSemester.where(:semester_id => course_semester_params[:semester_id], :course_id => course_semester_params[:course_id])
 
-    if check.blank? then
-      respond_to do |format|
-        if @course_semester.save
-          format.html { redirect_to course_semesters_path, notice: 'Course was successfully assigned.' }
-          format.json { render :show, status: :created, location: @course_semester }
-        else
-          format.html { render :new }
-          format.json { render json: @course_semester.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @course_semester.save
+        format.html { redirect_to course_semesters_path, notice: 'Course was successfully assigned.' }
+        format.json { render :show, status: :created, location: @course_semester }
+      else
+        format.html { render :new }
+        format.json { render json: @course_semester.errors, status: :unprocessable_entity }
       end
-    else
-      redirect_to course_semesters_path, notice: 'Course already exists.'
     end
   end
 
@@ -71,6 +66,15 @@ class CourseSemestersController < ApplicationController
 
     respond_to do |format|
       format.js { render 'populate_courses', :formats => [:js] }
+    end
+  end
+
+  def show_course
+    courses =  CourseSemester.where(:semester_id => params[:semester_id])
+    @course_list = Course.where.not(:id => courses.select(:course_id))
+
+    respond_to do |format|
+      format.js { render 'show_course', :formats => [:js] }
     end
   end
 

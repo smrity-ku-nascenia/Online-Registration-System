@@ -4,3 +4,12 @@
     <%= link_to 'Back', course_semesters_path %>
   </div>
 </div>
+
+<script>
+    $('#course_semester_semester_id').change(function () {
+        semester_id = $("#course_semester_semester_id").val();
+        $.ajax({
+            url: "<%= show_course_path %>"+ '?semester_id='+semester_id
+        });
+    });
+</script>
