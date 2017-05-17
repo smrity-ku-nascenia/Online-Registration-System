@@ -45,7 +45,7 @@ class RegistrationInformationsController < ApplicationController
         end
       end
     else
-      redirect_to registration_informations_path, notice: "Sorry maximum credit is #{max_credit}. #{@registration.course_semester.course.course_name} course can not be registered"
+      redirect_to registration_informations_path,  :alert => "Sorry maximum credit is #{max_credit}. #{@registration.course_semester.course.course_name} course can not be registered"
     end
   end
 

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   #include Pundit
   include ActionController::Helpers
+  add_flash_types :error
 
   protect_from_forgery with: :exception, except: :showcourse
   # before_action :authenticate_user!

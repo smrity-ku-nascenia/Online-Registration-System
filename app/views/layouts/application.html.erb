@@ -70,6 +70,9 @@
 <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
 <% end %>
+<% if error %>
+    <p class="alert alert-error"><%= error %></p>
+<% end %>
 
 <div class="container" style="padding: 5px">
   <%= yield %>
@@ -83,7 +86,6 @@
     $('#logIn').click(function () {
         window.location.href= "<% carousel_profile_page_path %>"
     });
-
 </script>
 
 </body>
