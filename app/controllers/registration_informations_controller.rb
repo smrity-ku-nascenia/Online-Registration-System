@@ -30,15 +30,22 @@ class RegistrationInformationsController < ApplicationController
   # POST /registration_informations.json
   def create
     @registration = RegistrationInformation.new(registration_information_params)
+    credit = @registration.enrollment.total_credit + @registration.course_semester.course.credit
+    max_credit = @registration.enrollment.semester.max_credit
 
-    respond_to do |format|
-      if @registration.save
-        format.html { redirect_to registration_informations_path, notice: "course has been successfully registered" }
-        format.json { render :show, status: :created, location: @registration }
-      else
-        format.html { render :new }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
+    if credit <= max_credit then
+      respond_to do |format|
+        if @registration.save
+          @registration.enrollment.update(:total_credit => credit)
+          format.html { redirect_to registration_informations_path, notice: "#{@registration.course_semester.course.course_name} course has been successfully registered" }
+          format.json { render :show, status: :created, location: @registration }
+        else
+          format.html { render :new }
+          format.json { render json: @registration.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to registration_informations_path, notice: "Sorry maximum credit is #{max_credit}. #{@registration.course_semester.course.course_name} course can not be registered"
     end
   end
 
@@ -47,7 +54,7 @@ class RegistrationInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @registration_information.update(registration_information_params)
-        format.html { redirect_to registration_information_url, notice: "course information was successfully updated." }
+        format.html { redirect_to registration_information_url, notice: "#{@registration.course_semester.course.course_name} course information was successfully updated." }
         format.json { render :show, status: :ok, location: @registration_information }
       else
         format.html { redirect_to :edit }
@@ -59,9 +66,12 @@ class RegistrationInformationsController < ApplicationController
   # DELETE /registration_informations/1
   # DELETE /registration_informations/1.json
   def destroy
+    credit = @registration_information.enrollment.total_credit - @registration_information.course_semester.course.credit
+    @registration_information.enrollment.update(:total_credit => credit)
+
     @registration_information.destroy
     respond_to do |format|
-      format.html { redirect_to registration_informations_url, notice: "Course has been deleted." }
+      format.html { redirect_to registration_informations_url, notice: "#{@registration_information.course_semester.course.course_name} course has been removed." }
       format.json { head :no_content }
     end
   end

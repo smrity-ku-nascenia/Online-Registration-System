@@ -1,5 +1,3 @@
-<div class="panel panel-default" style="padding: 20px">
-
   <% if @enrollment.blank? %>
       <div class="panel-heading">
         <p style="color: red">You are not Registered To the Current Semester</p>
@@ -17,44 +15,73 @@
   <% else %>
       <div class="row">
         <div class="col-lg-6">
-          <div style="padding: 15px;background-color: whitesmoke;border: medium">
-            <h5>Registered Courses</h5>
-          </div>
-          <div style="padding: 20px">
-            <% @enrollment.registration_informations.each do |information| %>
-              <div class="row" style="padding-bottom: 10px">
-                <div class="col-lg-4">
-                  <%= information.course_semester.course.course_name %>
-                </div>
-                <div class="col-lg-6">
-                  <%= button_to 'Remove', information, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </div>
-              </div>
-            <% end %>
+          <div class="panel panel-default" style="padding: 20px">
+            <div class="panel-heading">
+              <h5>Registered Courses</h5>
+            </div>
+            <div style="padding-top: 10px">
+              <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Course ID</th>
+                  <th>Course Name</th>
+                  <th>Credit</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @enrollment.registration_informations.each do |information| %>
+                    <tr>
+                      <td><%= information.course_semester.course.course_id %></td>
+                      <td><%= information.course_semester.course.course_name %></td>
+                      <td><%= information.course_semester.course.credit %></td>
+                      <td><%= button_to 'Remove', information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                  <tr style="background-color: whitesmoke">
+                    <td colspan="2">Total Credit</td>
+                    <td colspan="2"><%= @enrollment.total_credit %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="col-lg-6">
-          <div style="padding: 15px;background-color: whitesmoke;border: medium">
-            <h5>Available Courses</h5>
-          </div>
-          <div style="padding: 20px">
-            <% @courses.each do |course| %>
-              <%= form_for(RegistrationInformation.new) do |f| %>
-                <% unless f.object.checked(@enrollment.id, course.id) %>
-                  <div class="row" style="padding-bottom: 10px">
-                    <div class="col-lg-4">
-                      <%= course.course.course_name %>
-                    </div>
-                    <div class="col-lg-6">
-                      <%= f.hidden_field :enrollment_id, value: @enrollment.id %>
-                      <%= f.hidden_field :course_semester_id, value: course.id %>
-                      <%= f.hidden_field :mark, value: 0.0 %>
-                      <%= f.submit "Add" %>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            <% end %>
+          <div class="panel panel-default" style="padding: 20px">
+            <div class="panel-heading">
+              <h5>Available Courses</h5>
+            </div>
+            <div style="padding-top: 10px">
+              <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Course ID</th>
+                  <th>Course Name</th>
+                  <th>Credit</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @courses.each do |course| %>
+                    <%= form_for(RegistrationInformation.new) do |f| %>
+                      <% unless f.object.checked(@enrollment.id, course.id) %>
+                        <tr>
+                          <td><%= course.course.course_id %></td>
+                          <td><%= course.course.course_name %></td>
+                          <td><%= course.course.credit %></td>
+
+                          <%= f.hidden_field :enrollment_id, value: @enrollment.id %>
+                          <%= f.hidden_field :course_semester_id, value: course.id %>
+                          <%= f.hidden_field :mark, value: 0.0 %>
+                          <td><%= f.submit "Add" %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
